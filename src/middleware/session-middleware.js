@@ -1,4 +1,4 @@
-const Session = require('../persistence/sessions');
+const Session = require('../persistence/orders');
 
 const sessionMiddleware = async (request, response, next) => {
   if (!request.session.id) {

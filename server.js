@@ -9,6 +9,11 @@ const {SESSION_SECRET} = require('./config');
 const app = express();
 const api = require('./src/api');
 
+const cors = require('cors');
+app.use(cors({
+    origin: 'http://localhost:3006'
+}));
+
 app.get('/', (request, response) => response.sendStatus(200));
 app.get('/health', (request, response) => response.sendStatus(200));
 
