@@ -1,8 +1,8 @@
 {
-  "name": "express-postgres-starter",
+  "name": "smash-backend",
   "private": true,
   "version": "1.0.0",
-  "description": "Starter project using Express and Postgres",
+  "description": "saves some scores",
   "main": "config.js",
   "scripts": {
     "test": "xo",
@@ -39,13 +39,5 @@
   "xo": {
     "prettier": true,
     "space": true
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/HugoDF/express-postgres-starter.git"
-  },
-  "bugs": {
-    "url": "https://github.com/HugoDF/express-postgres-starter/issues"
-  },
-  "homepage": "https://github.com/HugoDF/express-postgres-starter#readme"
+  }
 }

@@ -4,11 +4,10 @@ module.exports.up = async function (next) {
   const client = await db.connect();
 
   await client.query(`
-  CREATE TABLE IF NOT EXISTS orders (
+  CREATE TABLE IF NOT EXISTS leaderboard (
     ID  SERIAL PRIMARY KEY,
-    offerer text NOT NULL,
-    data jsonb NOT NULL,
-    type text NOT NULL
+    name text NOT NULL,
+    score integer NOT NULL
   );
   `);
 
@@ -20,7 +19,7 @@ module.exports.down = async function (next) {
   const client = await db.connect();
 
   await client.query(`
-  DROP TABLE orders;
+  DROP TABLE leaderboard;
   `);
 
   await client.release(true);

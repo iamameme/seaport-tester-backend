@@ -3,54 +3,25 @@ const {v4: uuidv4} = require('uuid');
 const db = require('./db');
 
 module.exports = {
-  async create(offerer, data,  type) {
+  async create(name, score) {
     await db.query(sql`
-    INSERT INTO orders (offerer, data, type)
-      VALUES (${offerer}, ${data}, ${type});
+    INSERT INTO leaderboard (name, score)
+      VALUES (${name}, ${score});
     `);
     return;
   },
-  async findByOfferer(offerer) {
-    const {rows} = await db.query(`
-    SELECT * FROM orders WHERE offerer Ilike $1
-    `, [`%${offerer}%`]);
-    if (rows.length < 1) {
-      return null;
-    }
-
-    //const {data: data} = rows[0];
-    return rows;
-  },
-  async findByType(type) {
-    const {rows} = await db.query(`
-    SELECT * FROM orders WHERE type Ilike $1
-    `, [`%${type}%`]);
-    if (rows.length < 1) {
-      return null;
-    }
-
-    //const {data: data} = rows[0];
-    return rows;
-  },
   async getAll(limit) {
     const {rows} = await db.query(sql`
-    SELECT * FROM orders LIMIT ${limit ? limit : 20};
+    SELECT * FROM leaderboard LIMIT ${limit ? limit : 20};
     `);
     if (rows.length < 1) {
       return null;
     }
-
-    //const {data: data} = rows[0];
     return rows;
   },
-  async delete(id) {
+  async deleteByName(name) {
     await db.query(sql`
-    DELETE FROM orders WHERE id = ${id};
-    `);
-  },
-  async deleteByOfferer(offerer) {
-    await db.query(sql`
-    DELETE FROM orders WHERE offerer = ${offerer};
+    DELETE FROM leaderboard WHERE name = ${name};
     `);
   }
 };
